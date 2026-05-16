@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Portfolio Template — POW</title>
+  <meta name="description" content="Editable portfolio template with bright UI, 3D animations, skills, experience, projects and import/export." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <!-- Scroll progress -->
+  <div id="progress" class="progress"></div>
+
+  <!-- Background scroll scene -->
+  <div class="scene" aria-hidden="true">
+    <div class="mesh"></div>
+    <div class="ring" data-parallax="rotate"></div>
+    <div class="cube" data-parallax="cube"></div>
+    <div class="blob"></div>
+    <div class="comet"><span></span><i></i></div>
+    <div class="sparkles" id="sparkles"></div>
+  </div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="brand">
+      <div class="brand-dot"></div>
+      <span>POW · Portfolio</span>
+    </div>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="actions">
+      <button id="themeBtn" class="btn ghost" title="Cycle theme">Theme</button>
+      <button id="settingsBtn" class="btn ghost" title="Import / Export">Settings</button>
+      <button id="editBtn" class="btn primary">Edit</button>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-text">
+      <span class="pill">Available for new work</span>
+      <h1 id="heroName" data-edit="name" data-type="text"></h1>
+      <p class="title" id="heroTitle" data-edit="title" data-type="text"></p>
+      <p class="bio" id="heroBio" data-edit="bio" data-type="textarea"></p>
+      <div class="cta">
+        <a class="btn primary" href="#projects">See projects</a>
+        <a class="btn ghost" href="#contact">Get in touch</a>
+      </div>
+      <div class="stats">
+        <div><strong id="statYears" data-edit="yearsExperience" data-type="text"></strong><span>Years</span></div>
+        <div><strong id="statProjects" data-edit="projectsCount" data-type="text"></strong><span>Projects</span></div>
+        <div><strong id="statLoc" data-edit="location" data-type="text"></strong><span>Based in</span></div>
+      </div>
+    </div>
+    <div class="hero-art">
+      <div class="solar" id="solar"></div>
+      <div class="avatar-card" id="avatarCard">
+        <div class="avatar" id="avatar"></div>
+        <div class="floaty c1"></div>
+        <div class="floaty c2"></div>
+        <div class="floaty c3"></div>
+        <div class="avatar-upload">
+          <label class="btn small primary" title="Upload image">
+            <span>📷 Upload</span>
+            <input id="avatarFile" type="file" accept="image/*" hidden />
+          </label>
+          <button id="avatarClear" class="btn small ghost" title="Remove image">Clear</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills" class="section">
+    <div class="section-head">
+      <h2>Skills</h2>
+      <p>What I bring to the table.</p>
+      <button class="btn small edit-only" data-add="skills">+ Add skill</button>
+    </div>
+    <div id="skillsGrid" class="skills-grid"></div>
+  </section>
+
+  <!-- Experience + Education -->
+  <section id="experience" class="section two-col">
+    <div>
+      <div class="section-head">
+        <h2>Experience</h2>
+        <button class="btn small edit-only" data-add="experience">+ Add</button>
+      </div>
+      <div id="experienceList" class="timeline"></div>
+    </div>
+    <div>
+      <div class="section-head">
+        <h2>Education</h2>
+        <button class="btn small edit-only" data-add="education">+ Add</button>
+      </div>
+      <div id="educationList" class="timeline"></div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="section">
+    <div class="section-head">
+      <h2>Selected Projects</h2>
+      <p>A few things I've shipped recently.</p>
+      <button class="btn small edit-only" data-add="projects">+ Add project</button>
+    </div>
+    <div id="projectsGrid" class="projects-grid"></div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="section contact">
+    <div>
+      <h2>Let's build something bright.</h2>
+      <p class="muted">Drop a line — I respond within a day.</p>
+      <ul class="contact-list">
+        <li>📧 <span data-edit="email" data-type="text" id="cEmail"></span></li>
+        <li>📞 <span data-edit="phone" data-type="text" id="cPhone"></span></li>
+        <li>📍 <span data-edit="location" data-type="text" id="cLoc"></span></li>
+      </ul>
+      <div id="socialList" class="socials"></div>
+      <button class="btn small edit-only" data-add="social">+ Add social link</button>
+    </div>
+    <form class="contact-form" onsubmit="event.preventDefault(); alert('Thanks! (demo form)')">
+      <label>Name<input required placeholder="Your name" /></label>
+      <label>Email<input type="email" required placeholder="you@example.com" /></label>
+      <label>Message<textarea rows="4" required placeholder="Tell me about your project"></textarea></label>
+      <button class="btn primary" type="submit">Send message</button>
+    </form>
+  </section>
+
+  <footer class="footer">
+    <span>© <span id="year"></span> <span data-edit="name" data-type="text"></span> · Built with the POW portfolio template</span>
+  </footer>
+
+  <!-- Settings drawer -->
+  <div id="drawer" class="drawer" aria-hidden="true">
+    <div class="drawer-panel">
+      <div class="drawer-head">
+        <h3>Settings</h3>
+        <button class="btn ghost small" id="drawerClose">Close</button>
+      </div>
+      <div class="drawer-body">
+        <div class="row">
+          <label>Theme</label>
+          <div class="seg">
+            <button data-theme="light">Light</button>
+            <button data-theme="white">White</button>
+            <button data-theme="dark">Dark</button>
+          </div>
+        </div>
+        <div class="row">
+          <label>Accent color</label>
+          <input id="accentInput" type="color" />
+        </div>
+        <div class="row">
+          <label>Avatar URL</label>
+          <input id="avatarInput" type="text" placeholder="https://..." />
+        </div>
+        <hr/>
+        <div class="row">
+          <label>Data</label>
+          <div class="actions">
+            <button class="btn primary small" id="exportBtn">Export JSON</button>
+            <label class="btn ghost small" style="cursor:pointer">
+              Import JSON<input id="importInput" type="file" accept="application/json" hidden />
+            </label>
+            <button class="btn ghost small" id="resetBtn">Reset</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="drawer-scrim" id="drawerScrim"></div>
+  </div>
+
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
